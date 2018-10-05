@@ -1,0 +1,66 @@
+.versus-badge-container {
+  min-width: 80px;
+  min-height: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+	perspective: 1000px;
+}
+
+/* flip the pane when hovered */
+.versus-badge-container:hover .versus-badge, .versus-badge-container.hover .versus-badge {
+	transform: rotateY(180deg);
+}
+
+.versus-badge-container.loading {
+  background: white;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 80px;
+  font-size: calc(16px + 1rem);
+}
+
+.versus-badge-front, .versus-badge-back {
+  min-width: 80px;
+  min-height: 80px;
+  background: white;
+  border-radius: 100%;
+  line-height: 80px;
+  text-align: center;
+  color: #111;
+  font-size: calc(16px + 1rem);
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* flip speed goes here */
+.versus-badge {
+	transition: 0.2s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+/* hide versus-badge-back of pane during swap */
+.versus-badge-front, .versus-badge-back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* versus-badge-front pane, placed above back */
+.versus-badge-front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.versus-badge-back {
+  cursor: pointer;
+	transform: rotateY(180deg);
+}

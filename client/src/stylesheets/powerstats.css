@@ -1,0 +1,10 @@
+ul.powerstats {
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+}
