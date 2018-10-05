@@ -15,8 +15,10 @@
 }
 
 .versus-badge-container.loading {
-  background: white;
+  background: #111;
+  color: white;
   border-radius: 100%;
+  box-shadow: 0 0 0 0.75rem white;
   text-align: center;
   line-height: 80px;
   font-size: calc(16px + 1rem);
@@ -25,11 +27,12 @@
 .versus-badge-front, .versus-badge-back {
   min-width: 80px;
   min-height: 80px;
-  background: white;
+  background: #111;
   border-radius: 100%;
+  box-shadow: 0 0 0 0.75rem white;
   line-height: 80px;
   text-align: center;
-  color: #111;
+  color: white;
   font-size: calc(16px + 1rem);
   font-weight: 900;
   display: flex;

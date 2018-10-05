@@ -15,7 +15,7 @@ class HeroImage extends Component {
   }
 
   handleImageError = () => {
-    this.setState({ imageFailed: true });
+    this.setState({ imageFailed: true }, this.heroImageLoaded);
   }
 
   heroImageLoaded = () => {
@@ -24,25 +24,31 @@ class HeroImage extends Component {
 
   render() {
 
-    let imageDisplay = {
-      display: ""
+    if (this.state.imageFailed) {
+
+      return(
+        <div className='hero-img failed'>
+          <i className='fa fa-user-circle'></i>
+        </div>
+      )
+
+    } else {
+
+      return(
+        <div className='hero-img'>
+          {!!this.props.url &&
+            <img src={(this.state.imageFailed == false) ? this.props.url : "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/RonSwanson.jpg/250px-RonSwanson.jpg"} onError={this.handleImageError} onLoad={this.heroImageLoaded} />
+          }
+        </div>
+      )
+
     }
-
-    if (this.props.isProcessing) imageDisplay.display = "none";
-
-    return(
-      <div className='hero-img'>
-        {!!this.props.url &&
-          <img src={(this.state.imageFailed == false) ? this.props.url : "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/RonSwanson.jpg/250px-RonSwanson.jpg"} onError={this.handleImageError} onLoad={this.heroImageLoaded} style={imageDisplay} />
-        }
-      </div>
-    )
   }
 
 }
 
 HeroImage.defaultProps = {
-  url: "",
+  url: "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/RonSwanson.jpg/250px-RonSwanson.jpg",
   isProcessing: true,
 }
 
