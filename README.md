@@ -4,7 +4,7 @@
 ### Technologies:
 This minimal app uses an express backend to hit the http://superheroapi.com API and React front end.
 
-# Goal
+### Goal
 The goal is pretty simple - display two random fictional characters, with their image and stats, to visually demonstrate who is more "powerful".
 
 ### Future Enhancements
