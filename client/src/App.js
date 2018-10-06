@@ -60,8 +60,6 @@ class App extends Component {
   }
 
   shuffleHeroes = () => {
-    console.log(this.state.hero1.totalScore, this.state.hero2.totalScore);
-
     if (this.state.hero1.totalScore === this.state.hero2.totalScore) {
       this.loadHero1();
       this.loadHero2();
