@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Powerstats from '../components/Powerstats.js';
 import '../stylesheets/versusBadge.css';
 
 class VersusBadge extends Component {

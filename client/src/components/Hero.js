@@ -8,10 +8,13 @@ class Hero extends Component {
   render() {
 
     let heroClassName = (this.props.isProcessing) ? `hero loading` : `hero`;
+    //if the winner is defined and not an empty string, and its id matches this hero, add the declared class
+    if ((this.props.winner && this.props.winner !== "" && (this.props.winner.id === this.props.hero.id)) || this.props.winner === "tie") heroClassName += " declared";
 
     return(
       <div className={heroClassName}>
-        <HeroImage index={this.props.index} url={(!!this.props.hero.image && this.props.hero.image.url) ? this.props.hero.image.url : ""} isProcessing={this.props.isProcessing} onHeroImageLoaded={this.props.onHeroImageLoaded} isProcessing={this.props.isProcessing} />
+        <div className="winner"><i className='fa fa-trophy'></i>{this.props.winner && this.props.winner === "tie" ? "It's a Tie!" : "Winner!"}</div>
+        <HeroImage index={this.props.index} url={(!!this.props.hero.image && this.props.hero.image.url) ? this.props.hero.image.url : ""} isProcessing={this.props.isProcessing} onHeroImageLoaded={this.props.onHeroImageLoaded} />
         <div className='info--wrapper'>
           <div className='info'>
             <h2 className='name'>

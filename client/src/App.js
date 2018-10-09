@@ -13,7 +13,10 @@ class App extends Component {
       hero2: {},
       hero1Processing: true,
       hero2Processing: true,
+      winner: "",
     }
+    this.winnerTimeoutId = null;
+    // this.declareWinner = this.declareWinner.bind(this);
   }
 
   componentDidMount() {
@@ -21,9 +24,15 @@ class App extends Component {
     this.loadHero2();
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.winnerTimeoutId);
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
-    // console.log(this.prevState, this.state);
-    // if (this.state.hero1Processing == false && this.state.hero2Processing == false) this.setState({ heroesProcessing: false });
+    //once both heroes have fully loaded, let's declare a winner!
+    if (((prevState.hero1Processing != this.state.hero1Processing) || (prevState.hero2Processing != this.state.hero2Processing)) && (!this.state.hero1Processing && !this.state.hero2Processing)) {
+      this.winnerTimeoutId = setTimeout(this.declareWinner, 500);
+    }
   }
 
   loadHero1(id) {
@@ -56,35 +65,55 @@ class App extends Component {
       let statScore = (hero.powerstats[stat] === "null") ? 0 : parseInt(hero.powerstats[stat]);
       totalScore += statScore;
     });
-    return Math.round(totalScore / 6);
+    //return the average score
+    return Math.round(totalScore / powerStats.length);
   }
 
+
+  //shuffles the heroes when the versus badge is clicked
   shuffleHeroes = () => {
+
+    //clear the winner timeout and value
+    clearTimeout(this.winnerTimeoutId);
+    this.setState({ winner: "" });
+
+    //if heroes have the same score, reload both
     if (this.state.hero1.totalScore === this.state.hero2.totalScore) {
       this.loadHero1();
       this.loadHero2();
     }
 
+    //if hero 1 scored higher than hero 2, reload hero 2
     if (this.state.hero1.totalScore > this.state.hero2.totalScore) {
       this.loadHero2();
       return;
     }
 
+    //default to loading hero 1
     this.loadHero1();
   }
 
   onHeroImageLoaded = (heroIndex) => {
-    if (heroIndex === "1") {
-      this.setState({ hero1Processing: false });
-      return;
-    }
+    this.setState({ [`hero${heroIndex}Processing`]: false });
+  }
 
-    this.setState({ hero2Processing: false });
+  declareWinner = () => {
+    let winner;
+    if (this.state.hero1.totalScore === this.state.hero2.totalScore) {
+      winner = "tie";
+    } else if (this.state.hero1.totalScore >this.state.hero2.totalScore) {
+      winner = this.state.hero1;
+    } else if (this.state.hero1.totalScore < this.state.hero2.totalScore) {
+      winner = this.state.hero2;
+    } else {
+      winner = "";
+    }
+    this.setState({ winner: winner });
   }
 
   render() {
 
-    //we want to render the heroes at the same time - if either is stil processing, this value will be true
+    //if either hero is stil processing, this value will be true
     let heroesProcessing = (this.state.hero1Processing || this.state.hero2Processing);
 
     return (
@@ -93,9 +122,9 @@ class App extends Component {
           <h1><i className="fa fa-star"></i>Super Showdown<i className="fa fa-star"></i></h1>
         </header>
         <section className="heroes">
-          <Hero index="1" hero={this.state.hero1} isProcessing={this.state.hero1Processing} onHeroImageLoaded={this.onHeroImageLoaded} />
+          <Hero index="1" hero={this.state.hero1} isProcessing={this.state.hero1Processing} onHeroImageLoaded={this.onHeroImageLoaded} winner={this.state.winner} />
           <VersusBadge isProcessing={(heroesProcessing) ? true : false} onClick={this.shuffleHeroes} />
-          <Hero index="2" hero={this.state.hero2} isProcessing={this.state.hero2Processing} onHeroImageLoaded={this.onHeroImageLoaded} />
+          <Hero index="2" hero={this.state.hero2} isProcessing={this.state.hero2Processing} onHeroImageLoaded={this.onHeroImageLoaded} winner={this.state.winner} />
         </section>
       </div>
     );

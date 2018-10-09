@@ -37,7 +37,7 @@ class HeroImage extends Component {
       return(
         <div className='hero-img'>
           {!!this.props.url &&
-            <img src={(this.state.imageFailed == false) ? this.props.url : "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/RonSwanson.jpg/250px-RonSwanson.jpg"} onError={this.handleImageError} onLoad={this.heroImageLoaded} />
+            <img src={this.props.url} onError={this.handleImageError} onLoad={this.heroImageLoaded} alt="Hero" />
           }
         </div>
       )
