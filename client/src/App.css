@@ -73,9 +73,9 @@ header h1 .fa {
 
 @keyframes pulse {
   0% {
-    opacity: 0.2;
+    opacity: 0.25;
   }
   100% {
-    opacity: 0.25;
+    opacity: 0.5;
   }
 }
