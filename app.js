@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var port = process.env.PORT || 8080;
 
 var indexRouter = require('./routes/index');
 var heroRouter = require('./routes/hero');
@@ -44,6 +45,6 @@ app.use('/hero', heroRouter);
 //   res.render('error');
 // });
 
-app.listen(9000);
+app.listen(port);
 
 // module.exports = app;
