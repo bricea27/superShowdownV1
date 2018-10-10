@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
-var apiKeys = require('../apiKeys.js');
+// var apiKeys = require('../apiKeys.js');
 
-const SUPERHEROAPI_KEY = process.env.SUPERHEROAPI_KEY || apiKeys['SUPERHEROAPI_KEY'];
+const SUPERHEROAPI_KEY = process.env.SUPERHEROAPI_KEY;
 
 /* GET users listing. */
 router.get('/:id', function(req, res, next) {
