@@ -14,6 +14,7 @@ class App extends Component {
       hero1Processing: true,
       hero2Processing: true,
       winner: "",
+      showWinner: false,
     }
     this.winnerTimeoutId = null;
     // this.declareWinner = this.declareWinner.bind(this);
@@ -97,6 +98,10 @@ class App extends Component {
     this.setState({ [`hero${heroIndex}Processing`]: false });
   }
 
+  hideWinnerLabel = () => {
+    this.setState({ showWinner: false });
+  }
+
   declareWinner = () => {
     let winner;
     if (this.state.hero1.totalScore === this.state.hero2.totalScore) {
@@ -109,6 +114,7 @@ class App extends Component {
       winner = "";
     }
     this.setState({ winner: winner });
+    this.setState({ showWinner: true });
   }
 
   render() {
@@ -122,9 +128,9 @@ class App extends Component {
           <h1><i className="fa fa-star"></i>Super Showdown<i className="fa fa-star"></i></h1>
         </header>
         <section className="heroes">
-          <Hero index="1" hero={this.state.hero1} isProcessing={this.state.hero1Processing} onHeroImageLoaded={this.onHeroImageLoaded} winner={this.state.winner} />
+          <Hero index="1" hero={this.state.hero1} isProcessing={this.state.hero1Processing} onHeroImageLoaded={this.onHeroImageLoaded} winner={this.state.winner} showWinner={this.state.showWinner} onClick={this.hideWinnerLabel} />
           <VersusBadge isProcessing={(heroesProcessing) ? true : false} onClick={this.shuffleHeroes} />
-          <Hero index="2" hero={this.state.hero2} isProcessing={this.state.hero2Processing} onHeroImageLoaded={this.onHeroImageLoaded} winner={this.state.winner} />
+          <Hero index="2" hero={this.state.hero2} isProcessing={this.state.hero2Processing} onHeroImageLoaded={this.onHeroImageLoaded} winner={this.state.winner} showWinner={this.state.showWinner} onClick={this.hideWinnerLabel} />
         </section>
       </div>
     );

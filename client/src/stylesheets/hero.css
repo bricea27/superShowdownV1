@@ -11,7 +11,7 @@
 }
 
 .hero.loading:after {
-  content: "Locating Hero";
+  content: "Finding Oponent";
   width: 100%;
   height: 100%;
   position: absolute;
@@ -47,6 +47,7 @@
 }
 
 .hero .winner {
+  cursor: pointer;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -64,7 +65,16 @@
   align-items: center;
   justify-content: center;
   z-index: 99;
-  transform: translateY(100%);
+  transform: translateX(100%);
+  transition: all ease 0.2s;
+}
+
+.hero:nth-of-type(1) .winner {
+  transform: translateX(-100%);
+}
+
+.hero .winner:hover {
+  background: rgba(249, 202, 36, 0.75);
   transition: all ease 0.2s;
 }
 
@@ -73,7 +83,7 @@
 }
 
 .hero.declared .winner {
-  transform: translateY(0);
+  transform: translateX(0);
   transition: all ease 0.2s;
 }
 
