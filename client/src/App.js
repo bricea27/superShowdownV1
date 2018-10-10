@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Hero from './components/Hero';
 import VersusBadge from './components/VersusBadge';
 import './App.css';
@@ -31,7 +30,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     //once both heroes have fully loaded, let's declare a winner!
-    if (((prevState.hero1Processing != this.state.hero1Processing) || (prevState.hero2Processing != this.state.hero2Processing)) && (!this.state.hero1Processing && !this.state.hero2Processing)) {
+    if (((prevState.hero1Processing !== this.state.hero1Processing) || (prevState.hero2Processing !== this.state.hero2Processing)) && (!this.state.hero1Processing && !this.state.hero2Processing)) {
       this.winnerTimeoutId = setTimeout(this.declareWinner, 500);
     }
   }

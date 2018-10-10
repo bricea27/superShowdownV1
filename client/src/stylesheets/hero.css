@@ -46,6 +46,12 @@
   transition: all ease 0.2s;
 }
 
+/* .hero .show-details {
+  position: absolute;
+  top: 0;
+  right: 0;
+} */
+
 .hero .winner {
   cursor: pointer;
   width: 100%;
@@ -108,6 +114,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  overflow: hidden;
 }
 
 .hero-img img {
