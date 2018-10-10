@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-     "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
