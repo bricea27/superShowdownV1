@@ -11,7 +11,7 @@
 }
 
 .hero.loading:after {
-  content: "Finding Oponent";
+  content: "Finding Opponent";
   width: 100%;
   height: 100%;
   position: absolute;
@@ -162,7 +162,7 @@
   .hero {
     border-width: 0.25rem;
   }
-  
+
   .hero-img img {
     width: auto;
     height: 100%;
