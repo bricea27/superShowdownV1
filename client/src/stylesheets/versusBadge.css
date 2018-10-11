@@ -67,3 +67,12 @@
   cursor: pointer;
 	transform: rotateY(180deg);
 }
+
+@media screen and (max-width: 480px) {
+  .versus-badge-container, .versus-badge-container.loading, .versus-badge-front, .versus-badge-back {
+    min-width: 60px;
+    min-height: 60px;
+    line-height: 60px;
+    font-size: calc(16px + 0.5rem);
+  }
+}

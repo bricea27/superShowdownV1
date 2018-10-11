@@ -159,6 +159,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .hero {
+    border-width: 0.25rem;
+  }
+  
   .hero-img img {
     width: auto;
     height: 100%;
