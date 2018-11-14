@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const request = require('request');
-const apiKey = require('./apiKeys.js');
 const app = express();
 
 const SUPERHEROAPI_KEY = process.env.SUPERHEROAPI_KEY;
