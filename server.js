@@ -1,10 +1,9 @@
 const express = require('express');
 const path = require('path');
 const request = require('request');
-// const apiKey = require('./apiKeys.js');
+const apiKey = require('./apiKeys.js');
 const app = express();
 
-// const SUPERHEROAPI_KEY = process.env.SUPERHEROAPI_KEY || apiKey['SUPERHEROAPI_KEY'];
 const SUPERHEROAPI_KEY = process.env.SUPERHEROAPI_KEY;
 const port = process.env.PORT || 8080;
 
@@ -12,11 +11,13 @@ const port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/hero/:id', function(req, res, next) {
-  let id = req.params.id;
-  request(`http://superheroapi.com/api/${SUPERHEROAPI_KEY}/${id}`, function (error, response, body) {
+  let url = `https://superheroapi.com/api/${SUPERHEROAPI_KEY}/${req.params.id}`;
+  request({url: url, rejectUnauthorized: false}, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       data = JSON.parse(body);
       res.json(data);
+    } else {
+      res.json(error);
     }
   });
 });
