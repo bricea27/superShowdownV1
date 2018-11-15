@@ -25,8 +25,9 @@ section {
 }
 
 header {
+  height: 50px;
   display: flex;
-  padding: 1rem;
+  padding: 0 1rem;
   align-items: center;
   justify-content: center;
   background: white;
@@ -69,6 +70,9 @@ header h1 .fa {
 @media screen and (min-width: 480px) {
   html, body {
     overflow: hidden;
+  }
+  header {
+    height: 70px;
   }
   header h1 {
     font-size: calc(16px + 2vw);
