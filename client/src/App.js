@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MadeBy from './components/MadeBy';
 import Hero from './components/Hero';
 import VersusBadge from './components/VersusBadge';
 import './App.css';
@@ -124,6 +125,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
+          <MadeBy />
           <h1><i className="fa fa-star"></i>Super Showdown<i className="fa fa-star"></i></h1>
         </header>
         <section className="heroes">
